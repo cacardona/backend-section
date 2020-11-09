@@ -4,7 +4,7 @@ let _user = null;
 class UserRepository extends BaseRepository {
     constructor({ User }){
         super(User);
-        _user = user;
+        _user = User;
     }
 
     async getUserByUsername(username) {

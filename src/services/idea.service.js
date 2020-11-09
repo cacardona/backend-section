@@ -11,7 +11,7 @@ class IdeaService extends BaseService{
         if(!author) {
             const error = new Error();
             error.status = 400;
-            error.message = "ideaId must be sent";
+            error.message = "userId must be sent";
             throw error;
         }
 
