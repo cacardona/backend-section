@@ -14,7 +14,11 @@ const {
      } = require("../services");
 
 //controllers
-const { HomeController } = require("../controllers");
+const { HomeController, 
+        UserController, 
+        IdeaController, 
+        CommentController
+     } = require("../controllers");
 
 // routes
 const { HomeRoutes } = require("../routes/index.routes");
@@ -40,12 +44,15 @@ container
 })
 .register({
     HomeService: asClass(HomeService).singleton(),
-    UserService: asClass(HomeService).singleton(),
-    CommentService: asClass(HomeService).singleton(),
-    IdeaService: asClass(HomeService).singleton()
+    UserService: asClass(UserService).singleton(),
+    CommentService: asClass(CommentService).singleton(),
+    IdeaService: asClass(IdeaService).singleton()
 })
 .register({
-    HomeController: asClass(HomeController.bind(HomeController)).singleton()   //se pone bind para que express no cambie el scope
+    HomeController: asClass(HomeController.bind(HomeController)).singleton(),   //se pone bind para que express no cambie el scope
+    UserController: asClass(UserController.bind(UserController)).singleton(),
+    IdeaController: asClass(IdeaController.bind(IdeaController)).singleton(),
+    CommentController: asClass(CommentController.bind(CommentController)).singleton()
 })
 .register({
     HomeRoutes: asFunction(HomeRoutes).singleton()
