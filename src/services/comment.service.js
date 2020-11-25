@@ -10,7 +10,7 @@ class CommentService extends BaseService {
     }
 
     async getIdeaComments(ideaId){
-        if(!ideaId){
+        if (!ideaId){
             const error = new Error();
             error.status = 400;
             error.message = "ideaId muest be sent";
@@ -19,7 +19,7 @@ class CommentService extends BaseService {
 
         const idea = await _ideaRepository.get(ideaId);
 
-        if(!idea){
+        if (!idea){
             const error = new Error();
             error.status = 404;
             error.message = "ideaId does not exist";
@@ -30,8 +30,8 @@ class CommentService extends BaseService {
         return comments;
     }
 
-    async createComment(comment, ideaId){
-        if(!idea){
+    async createComment(comment, ideaId, userId){
+        if (!ideaId){
             const error = new Error();
             error.status = 400;
             error.message = "ideaId does not exist";
@@ -40,17 +40,17 @@ class CommentService extends BaseService {
 
         const idea = await _ideaRepository.get(ideaId);
 
-        if(!idea){
+        if (!idea){
             const error = new Error();
             error.status = 404;
             error.message = "ideaId does not exist";
             throw error;
         }
 
-        const createdComment = await _commentRepository.create(comment);
+        const createdComment = await _commentRepository.create({ ...comment, author: userId });
         idea.comments.push(createdComment);
 
-        return await _ideaRepository.update(ideaId, { comments: idea.comments});
+        return await _ideaRepository.update(ideaId, { comments: idea.comments });
     }
 }
 

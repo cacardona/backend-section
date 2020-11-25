@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const IdeaSchema = new Schema({
-    idea: { type: String, required: true},
+    idea: { type: String, required: true },
     description: { type: String },
     upvotes: [{ type: Boolean}],
     downvotes: [{ type: Boolean}],
